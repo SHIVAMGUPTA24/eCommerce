@@ -30,13 +30,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseEntity<?> updateProduct() {
-
-        return null;
+    public ResponseEntity<?> updateProduct(Product product) {
+        Optional<Product> entityToBeUpdated=productRepository.findById(product.getProductId());
+        if(entityToBeUpdated.isEmpty())
+        {return new ResponseEntity<>("No value Exist",HttpStatus.NOT_FOUND);}
+        else{
+            Product updatedProduct = productRepository.save(product);
+            return new ResponseEntity<>(updatedProduct,HttpStatus.OK);
+        }
     }
 
     @Override
-    public ResponseEntity<?> searchProduct() {
-        return null;
+    public ResponseEntity<?> searchProduct(long productId) {
+        Optional<Product> searchProductWithId=productRepository.findById(productId);
+        if(searchProductWithId.isEmpty())
+            return new ResponseEntity<>("No value Exist",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(searchProductWithId.get(),HttpStatus.OK);
+
     }
 }
