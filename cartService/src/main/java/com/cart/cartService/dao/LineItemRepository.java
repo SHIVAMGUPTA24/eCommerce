@@ -16,12 +16,16 @@ public interface LineItemRepository extends JpaRepository<LineItem, Integer> {
 	
 	public List<LineItem> findByCustomerId(int customerId);
 
-	@Query("UPDATE LineItem l set l.quantity = ?1 WHERE l.productId = ?2 AND l.customerId = ?3")
+	@Query("UPDATE LineItem l set l.quantity = ?1 WHERE l.customerId = ?2 AND l.productId = ?3")
 	@Modifying
-	public void updateQuantity(int quantity, int productId, int customerId);
+	public int updateQuantity(int quantity, int customerId, int productId);
 
-	@Query("DELETE FROM LineItem l WHERE l.productId = ?1 AND l.customerId = ?2")
+	@Query("DELETE FROM LineItem l WHERE l.customerId = ?1 AND l.productId = ?2")
 	@Modifying
-	public void deleteByCustomerIdAndProductId(int productId, int customerId);
+	public int deleteByCustomerIdAndProductId(int customerId, int productId);
+	
+	@Query("DELETE FROM LineItem l WHERE l.customerId = ?1")
+	@Modifying
+	public void deleteAllByCustomerId(int customerId);
 	
 }
