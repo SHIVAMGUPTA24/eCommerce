@@ -27,11 +27,19 @@ public class LineItemController {
 	}
 	
 	// SEARCH LINE ITEM
-	@GetMapping("/{customerId}/{productId}")
-	public ResponseEntity<?> searchLineItem(@PathVariable("customerId") int customerId, @PathVariable("productId") int productId) {
-	ResponseEntity<?> response = lineItemService.getLineItemByCustomerAndProductId(customerId, productId);
-	return response;
+//	@GetMapping("/{customerId}/{productId}")
+//	public ResponseEntity<?> searchLineItem(@PathVariable("customerId") int customerId, @PathVariable("productId") int productId) {
+//	ResponseEntity<?> response = lineItemService.getLineItemByCustomerAndProductId(customerId, productId);
+//	return response;
+//	}
+	
+	// FIND ALL LINE ITEMS
+	@GetMapping("/{customerId}")
+	public ResponseEntity<?> searchLineItem(@PathVariable("customerId") int customerId){
+		ResponseEntity<?> response = lineItemService.getLineItems(customerId);
+		return response;
 	}
+	
 
 	// ADD LINE ITEM
 	@PostMapping("/")
@@ -41,18 +49,36 @@ public class LineItemController {
 	}
 
 	// UPDATE LINE ITEM
-	@PutMapping("/{quantity}/{productId}/{customerId}")
+	@PutMapping("/{quantity}/{customerId}/{productId}")
 	public ResponseEntity<?> updateLineItem(@PathVariable("quantity") int quantity,
-	@PathVariable("productId") int productId, @PathVariable("customerId") int customerId) {
-	ResponseEntity<?> response = lineItemService.updateLineItem(quantity, productId, customerId);
+	@PathVariable("customerId") int customerId, @PathVariable("productId") int productId) {
+	ResponseEntity<?> response = lineItemService.updateLineItem(quantity, customerId, productId);
 	return response;
 	}
 
 	// DELETE LINE ITEM
-	@DeleteMapping("/{productId}/{customerId}")
-	public ResponseEntity<?> deleteLineItem(@PathVariable("productId") int productId,
-	@PathVariable("customerId") int customerId) {
-	ResponseEntity<?> response = lineItemService.deleteLineItem(productId, customerId);
+	@DeleteMapping("/{customerId}/{productId}")
+	public ResponseEntity<?> deleteLineItem(@PathVariable("customerId") int customerId,
+	@PathVariable("productId") int productId) {
+	ResponseEntity<?> response = lineItemService.deleteLineItem(customerId, productId);
+	return response;
+	}
+	
+	// EMPTY CART
+	@DeleteMapping("/{customerId}")
+	public ResponseEntity<?> emptyCart(@PathVariable("customerId") int customerId) {
+	ResponseEntity<?> response = lineItemService.emptyCart(customerId);
 	return response;
 	}
 }
+
+/*
+{
+    "itemId": 1,
+    "productId": 1,
+    "productName": "Samsung",
+    "quantity": 10,
+    "price": 100.0,
+    "customerId": 101
+}
+*/
