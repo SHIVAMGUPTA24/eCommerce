@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+________________jhfjkfgfdj
+=======
 Hi there how you doing :)
 
 i am fine thankyou for asking
+>>>>>>> afb19597b2c884a8fb4d88c0c207882e06727505
