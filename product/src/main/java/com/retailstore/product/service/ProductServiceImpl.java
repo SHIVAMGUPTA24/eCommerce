@@ -37,16 +37,17 @@ public class ProductServiceImpl implements ProductService {
             return new ResponseEntity<>("No value Exist", HttpStatus.NOT_FOUND);
         }
         else {
-            updateTransactionalProduct(productId, product);
-            Product updatedProduct= productRepository.findById(productId).get();
-            return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+                productRepository.updateProduct(productId,product.getProductDescription()
+                        ,product.getProductName(),product.getProductPrice(),product.getProductType());
+                ResponseEntity<?> updatedProduct = searchProduct(productId);
+                return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+
         }
     }
 
 
     public void updateTransactionalProduct(long productId, Product product) {
-        productRepository.updateProduct(productId,product.getProductDescription()
-                ,product.getProductName(),product.getProductPrice(),product.getProductType());
+
     }
 
     @Override

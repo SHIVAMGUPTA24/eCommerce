@@ -3,7 +3,6 @@ package com.retailstore.product.controller;
 import com.retailstore.product.entity.Product;
 import com.retailstore.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,14 +30,14 @@ public class ProductController {
         return productService.searchProduct(id);
     }
     @DeleteMapping("products/{id}")
-    public ResponseEntity<?> deleteProduct(long id){
+    public ResponseEntity<?> deleteProduct(@PathVariable("id") long id){
         return productService.deleteProduct(id);
     }
 //    POST
 ///api/products/
 //
 //
-//    DELETE
+//    DELETE46
 ///api/products/{id}
 //
 //
