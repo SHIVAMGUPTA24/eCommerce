@@ -7,6 +7,6 @@ public interface ProductService {
 
     ResponseEntity<?> addProduct(Product product);
     ResponseEntity<?> deleteProduct(long productId);
-    ResponseEntity<?> updateProduct(Product product);
+    ResponseEntity<?> updateProduct(long productId,Product product);
     ResponseEntity<?> searchProduct(long productId);
 }
