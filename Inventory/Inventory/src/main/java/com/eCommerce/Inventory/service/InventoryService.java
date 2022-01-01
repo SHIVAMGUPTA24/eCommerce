@@ -1,17 +1,25 @@
 package com.eCommerce.Inventory.service;
 
+import org.springframework.http.ResponseEntity;
+
+import com.eCommerce.Inventory.entity.Inventory;
+
 public interface InventoryService {
 
-//	ResponseEntity<?> getInventoryById(int id);
-//	
-//	ResponseEntity<?> getInventoryByCustomerAndProductId(int customerId, int productId);
+	ResponseEntity<?> createInventory(Inventory inventory);
+
+//	ResponseEntity<?> getinventoryByInventoryId(int inventoryId);
 //
-//	ResponseEntity<?> createInventory(Inventory Inventory);
+//	ResponseEntity<?> getinventoryByProductId(int productId);
 //
-//	ResponseEntity<?> updateInventory(int quantity, int productId, int customerId);
+//	ResponseEntity<?> getInventoriesByCategory(String category);
 //
-//	ResponseEntity<?> deleteInventory(int productId, int customerId);
+//	ResponseEntity<?> updateInventoryByInventoryId(int inventoryId, int quantity);
 //
-//	ResponseEntity<?> getinventoryByInventoryAndProductId(int inventoryId, int productId);
+//	ResponseEntity<?> updateInventoryByProductId(int productId, int quantity);
+//
+//	ResponseEntity<?> deleteInventoryByProductId(int productId);
+//
+//	ResponseEntity<?> deleteInventoriesByCategory(String category);
 
 }

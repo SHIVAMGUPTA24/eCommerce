@@ -7,17 +7,9 @@ import com.eCommerce.Inventory.entity.Inventory;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
-
-//	public Inventory findByCustomerIdAndProductId(int customerId, int productId);
-//	
-//	public List<Inventory> findByCustomerId(int customerId);
+//	Inventory findByInventoryId(int inventoryId);
 //
-////	@Query("UPDATE Inventory l set l.quantity = ?1 WHERE l.productId = ?2 AND l.customerId = ?3")
-////	@Modifying
-//	public void updateQuantity(int quantity, int productId, int customerId);
+//	Inventory findByProductId(int productId);
 //
-////	@Query("DELETE FROM Inventory l WHERE l.productId = ?1 AND l.customerId = ?2")
-////	@Modifying
-//	public void deleteByCustomerIdAndProductId(int productId, int customerId);
-//	
+//	List<Inventory> findByCategory(String category);	
 }
