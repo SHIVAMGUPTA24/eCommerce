@@ -29,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
         if (entityToBeDeleted.isEmpty())
             throw new ProductNotFoundException("No Product Found with this data");
 //            return new ResponseEntity<>("No value Exist", HttpStatus.NOT_FOUND);
+
         productRepository.delete(entityToBeDeleted.get());
         return new ResponseEntity<>(entityToBeDeleted.get(), HttpStatus.OK);
     }
@@ -38,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> entityToBeUpdated = productRepository.findById(productId);
         if (entityToBeUpdated.isEmpty()) {
             throw new ProductNotFoundException("No Product Found with this data:give valid data to be updated");
+
         }
         else {
                 productRepository.updateProduct(productId,product.getProductDescription()
@@ -45,7 +47,13 @@ public class ProductServiceImpl implements ProductService {
                 ResponseEntity<?> updatedProduct = searchProduct(productId);
                 return new ResponseEntity<>(updatedProduct.getBody(), HttpStatus.OK);
 
+
         }
+    }
+
+
+    public void updateTransactionalProduct(long productId, Product product) {
+
     }
 
     @Override
@@ -55,6 +63,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> searchProductWithId = productRepository.findById(productId);
         if (searchProductWithId.isEmpty())
             throw new ProductNotFoundException("No Product Found with this data");
+
         return new ResponseEntity<>(searchProductWithId.get(), HttpStatus.OK);
 
     }

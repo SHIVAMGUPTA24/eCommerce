@@ -1,4 +1,5 @@
 package com.retailstore.product.exception;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import java.time.ZonedDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class ProductException {
 
     private String message;
