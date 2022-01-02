@@ -16,13 +16,7 @@ public class ProductApplication {
         SpringApplication.run(ProductApplication.class, args);
     }
 
-//    @Bean
-//    public Docket demoSwaggerApi() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//        .select()
-//        .apis(RequestHandlerSelectors.basePackage("com.retailStore.product"))
-//                .build();
-//    }
+
 
 
 }
