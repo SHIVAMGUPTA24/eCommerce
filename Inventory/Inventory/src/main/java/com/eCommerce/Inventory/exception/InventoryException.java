@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class InventoryException{
+public class InventoryException extends Throwable{
 	
 	private Date date;
 	private String message;

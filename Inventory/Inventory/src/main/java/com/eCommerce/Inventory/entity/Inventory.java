@@ -21,6 +21,7 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int inventoryId;
 	private int productId;
+//	private String category;
 	private int quantity;
 	
 }
