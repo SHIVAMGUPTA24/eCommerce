@@ -1,5 +1,8 @@
 package com.eCommerce.Inventory.controller;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,20 +24,47 @@ public class InventoryController {
 	@Autowired
 	InventoryService inventoryService;
 	
+	@GetMapping("/test")
+	public String getApiCall(){
+		return "API Called";
+	}
+	
 	@GetMapping("/testrun")
 	public ResponseEntity<?> getAllInventories(){
 		return inventoryService.getAllInventories();
 	}
 	
 	// ADD Inventory
-	@PostMapping("/create")
-	public ResponseEntity<?> addinventory(@RequestBody Inventory inventory) {
-	return inventoryService.createInventory(inventory);
+		@PostMapping("/create")
+		public ResponseEntity<?> addinventory(@RequestBody Inventory inventory) {
+		return inventoryService.createInventory(inventory);
 	} 
+	
+//	// ADD Inventory
+//		@PostMapping("/create-all")
+//		public ResponseEntity<?> addinventory(@RequestBody List<Inventory> invList) {
+//		return inventoryService.createAllInventories(invList);
+//	} 
+		
+//	[{
+//	    "productId" : 1006,
+//	    "category" : "mobiles",
+//	    "quantity" : 20 
+//	},
+//	{
+//	    "productId" : 1007,
+//	    "category" : "mobiles",
+//	    "quantity" : 30 
+//	},
+//	{
+//	    "productId" : 1008,
+//	    "category" : "mobiles",
+//	    "quantity" : 40 
+//	}]
 		
 	// SEARCH Inventory | by Inventory Id
 	@GetMapping("/findby/invid/{inventoryid}")
-	public ResponseEntity<?> searchByInventoryId(@PathVariable("inventoryid") int inventoryId) {
+	public ResponseEntity<?> searchByInventoryId(@PathVariable("inventoryid") UUID inventoryId) {
 	return inventoryService.getByInventoryId(inventoryId);
 	}
 //
@@ -45,16 +75,16 @@ public class InventoryController {
 	return response;
 	}
 	
-	// SEARCH Inventories | by Categories
-//	@GetMapping("/findby/{category}")
-//	public ResponseEntity<?> searchByCategory(@PathVariable("category") String category) {
-//	ResponseEntity<?> response = inventoryService.getInventoriesByCategory(category);
+////	 SEARCH Inventories | by Type
+//	@GetMapping("/findby/{type}")
+//	public ResponseEntity<?> searchByCategory(@PathVariable("type") String type) {
+//	ResponseEntity<List<Inventory>> response = inventoryService.getInventoriesByCategory(type);
 //	return response;
 //	}
 
 	// UPDATE Inventory | By Inventory Id
 	@PutMapping("/updateforinv/{inventoryid}/{quantity}")
-	public ResponseEntity<?> updateByInventoryId(@PathVariable("inventoryid") int inventoryId,@PathVariable("quantity") int quantity) {
+	public ResponseEntity<?> updateByInventoryId(@PathVariable("inventoryid") UUID inventoryId,@PathVariable("quantity") int quantity) {
 	ResponseEntity<?> response = inventoryService.updateInventoryByInventoryId(inventoryId,quantity);
 	return response;
 	}	
