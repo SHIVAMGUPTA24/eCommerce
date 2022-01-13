@@ -1,5 +1,7 @@
 package com.eCommerce.Inventory.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +21,8 @@ public class Inventory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int inventoryId;
+	private UUID inventoryId;
+//	private int inventoryId;
 	private int productId;
 	private String type;
 	private int quantity;

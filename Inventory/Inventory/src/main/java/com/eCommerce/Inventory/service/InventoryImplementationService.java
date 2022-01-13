@@ -1,6 +1,7 @@
 package com.eCommerce.Inventory.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -35,7 +36,7 @@ public class InventoryImplementationService implements InventoryService {
 	
 //
 	@Override
-	public ResponseEntity<?> getByInventoryId(int inventoryId) {
+	public ResponseEntity<?> getByInventoryId(UUID inventoryId) {
 		Inventory inv = inventoryRepo.findById(inventoryId).orElseThrow(()->new InventoryNotFoundException("Inventory Not Found For InventoryId: "+inventoryId));
 		ResponseEntity<?> res=new ResponseEntity<Inventory>(inv,HttpStatus.OK);
 		return res;
@@ -58,7 +59,7 @@ public class InventoryImplementationService implements InventoryService {
 
 
 	@Override
-	public ResponseEntity<?> updateInventoryByInventoryId(int inventoryId, int quantity) {
+	public ResponseEntity<?> updateInventoryByInventoryId(UUID inventoryId, int quantity) {
 		Inventory inv = inventoryRepo.findById(inventoryId).orElseThrow(()->new InventoryNotFoundException("Inventory Not Found For InventoryId: "+inventoryId));
 		if (quantity <= 0) {
 			throw new BadDataException("Quantity cannot be less than 1");
@@ -112,6 +113,17 @@ public class InventoryImplementationService implements InventoryService {
 		
 		return new ResponseEntity<List<Inventory>>(invlist,HttpStatus.OK);
 	}
+
+
+//	@Override
+//	public ResponseEntity<?> createAllInventories(List<Inventory> invList) {
+//		// TODO Auto-generated method stub
+//		for (Inventory inventory : invList) {
+//			if(inventory.getType().equals(inventoryRepo.findInventory)
+//			
+//		}
+//		return null;
+//	}
 	
 	
 
