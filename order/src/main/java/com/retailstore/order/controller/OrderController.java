@@ -26,10 +26,21 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<?> postOrder(@RequestBody Order order){
-        return null;
+    public ResponseEntity<?> addOrder (@RequestBody Order order) {
+        ResponseEntity<?> response = orderService.createOrder(order);
+        return response;
     }
 
+    @PutMapping("/order/{id}")
+    public ResponseEntity<?> updateOrder(@PathVariable("id") int id, @RequestBody Order order) {
+        ResponseEntity<?> response = orderService.updateOrder(id, order);
+        return response;
+    }
+
+    @DeleteMapping("/order/{id}")
+    public ResponseEntity<?> emptyOrder (@PathVariable("id") int id) {
+        ResponseEntity<?> response = orderService.deleteOrder (id); return response;
+    }
 ///api/order
 ///api/order/{id}
 ///api/order/{id}
