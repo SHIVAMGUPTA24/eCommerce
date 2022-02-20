@@ -1,10 +1,10 @@
 package com.retailstore.order.exception;
 
-public class BadDataException extends RuntimeException{
+public class LineItemNotFoundException extends RuntimeException{
 	
 	private static final long serialVersionUID = 1L;
 
-	public BadDataException(String message) {
+	public LineItemNotFoundException(String message) {
 		super(message);
 	}
 
