@@ -1,7 +1,7 @@
 package com.eCommerce.Inventory.service;
 
 import java.util.List;
-import java.util.UUID;
+// import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 
@@ -11,23 +11,14 @@ public interface InventoryService {
 
 	ResponseEntity<?> createInventory(Inventory inventory);
 
-	ResponseEntity<?> getByInventoryId(UUID inventoryId);
+	ResponseEntity<?> searchInventory(int productId);
+  
+	ResponseEntity<?> alterInventory(int productId, int quantity);
 
-	ResponseEntity<?> getinventoryByProductId(int productId);
+	ResponseEntity<?> deleteInventory(int productId);
 
-	ResponseEntity<?> getInventoriesByCategory(String type);
+	ResponseEntity<?> searchAllInventory();
 
-	ResponseEntity<?> updateInventoryByInventoryId(UUID inventoryId, int quantity);
-
-	ResponseEntity<?> updateInventoryByProductId(int productId, int quantity);
-
-	ResponseEntity<?> deleteInventoryByProductId(int productId);
-
-	ResponseEntity<?> deleteInventoriesByCategory(String category);
-
-	ResponseEntity<?> getAllInventories();
-
-//	ResponseEntity<?> createAllInventories(List<Inventory> invList);
 
 
 }
