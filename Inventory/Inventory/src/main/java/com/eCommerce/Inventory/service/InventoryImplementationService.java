@@ -1,6 +1,7 @@
 package com.eCommerce.Inventory.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -42,9 +43,8 @@ public class InventoryImplementationService implements InventoryService {
 				response = new ResponseEntity<Inventory>(repo.save(inv),HttpStatus.CREATED);	
 			}
 		return response;
-	}
 
-	@Override
+  @Override
 	public ResponseEntity<?> searchInventory(int productId) {
 		ResponseEntity<?> response;
 		Inventory inv=repo.findByProductId(productId).orElseThrow
@@ -78,7 +78,7 @@ public class InventoryImplementationService implements InventoryService {
 					response=new ResponseEntity<Inventory>(repo.save(inv),HttpStatus.ACCEPTED);	
 			}
 		return response;
-	}
+
 
 	@Override
 	public ResponseEntity<?> deleteInventory(int productId) {
@@ -98,5 +98,5 @@ public class InventoryImplementationService implements InventoryService {
 		ResponseEntity<?> res=new ResponseEntity<List<Inventory>>(repo.findAll(),HttpStatus.ACCEPTED);
 		return res;
 	}
-	
+
 }

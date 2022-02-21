@@ -11,12 +11,8 @@ import com.eCommerce.Inventory.entity.Inventory;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
+// public interface InventoryRepository extends JpaRepository<Inventory, UUID> {
 
 	Optional<Inventory> findByProductId(int inventoryId);
-	
-//	@Query("update profile p set p.quantity = ?2 WHERE p.productId = ?1")
-//	@Modifying
-//	int update(int productId,int quantity);
-	
-	
+		
 }

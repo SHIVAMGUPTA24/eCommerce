@@ -1,7 +1,6 @@
 package com.eCommerce.Inventory.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,7 +48,6 @@ public class InventoryController {
 	{
 		ResponseEntity<?> response=serv.alterInventory(inventoryId,quantity);
 		return response;
-	}
 
 	@DeleteMapping("/remove/{inventoryId}")
 	public ResponseEntity<?> removeInventory(@PathVariable int inventoryId)

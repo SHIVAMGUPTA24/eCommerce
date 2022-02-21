@@ -1,31 +1,27 @@
 package com.retailstore.order.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class LineItem {
+@NoArgsConstructor
+public class OrdersLineItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private int itemId;
     private int productId;
     private String productName;
     private int quantity;
     private double price;
-
-    @ManyToOne
-    @JoinColumn(name="order_id")
-    @JsonBackReference
-    private Order order;
+    private int customerId;
 
 }
