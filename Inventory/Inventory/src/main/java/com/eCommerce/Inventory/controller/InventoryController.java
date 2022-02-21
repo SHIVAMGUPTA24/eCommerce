@@ -1,7 +1,6 @@
 package com.eCommerce.Inventory.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,96 +17,44 @@ import com.eCommerce.Inventory.entity.Inventory;
 import com.eCommerce.Inventory.service.InventoryService;
 
 @RestController
-@RequestMapping("/inv")
+@RequestMapping("/api/inventory")
 public class InventoryController {
 
 	@Autowired
-	InventoryService inventoryService;
+	InventoryService serv;
 	
-	@GetMapping("/test")
-	public String getApiCall(){
-		return "API Called";
+	@PostMapping("/")
+	public ResponseEntity<?> addInventory(@RequestBody Inventory inventory)
+	{
+		ResponseEntity<?> response=serv.createInventory(inventory);
+		return response;
 	}
 	
-	@GetMapping("/testrun")
-	public ResponseEntity<?> getAllInventories(){
-		return inventoryService.getAllInventories();
+	@GetMapping("/find/{inventoryId}")
+	public ResponseEntity<?> findInventory(@PathVariable int inventoryId)
+	{
+		ResponseEntity<?> response=serv.searchInventory(inventoryId);
+		return response;
 	}
 	
-	// ADD Inventory
-		@PostMapping("/create")
-		public ResponseEntity<?> addinventory(@RequestBody Inventory inventory) {
-		return inventoryService.createInventory(inventory);
-	} 
-	
-//	// ADD Inventory
-//		@PostMapping("/create-all")
-//		public ResponseEntity<?> addinventory(@RequestBody List<Inventory> invList) {
-//		return inventoryService.createAllInventories(invList);
-//	} 
-		
-//	[{
-//	    "productId" : 1006,
-//	    "category" : "mobiles",
-//	    "quantity" : 20 
-//	},
-//	{
-//	    "productId" : 1007,
-//	    "category" : "mobiles",
-//	    "quantity" : 30 
-//	},
-//	{
-//	    "productId" : 1008,
-//	    "category" : "mobiles",
-//	    "quantity" : 40 
-//	}]
-		
-	// SEARCH Inventory | by Inventory Id
-	@GetMapping("/findby/invid/{inventoryid}")
-	public ResponseEntity<?> searchByInventoryId(@PathVariable("inventoryid") UUID inventoryId) {
-	return inventoryService.getByInventoryId(inventoryId);
+	@GetMapping("/findAll")
+	public ResponseEntity<?> findAllInventories()
+	{
+		ResponseEntity<?> response=serv.searchAllInventory();
+		return response;
 	}
-//
-	// SEARCH Inventory | by Product Id
-	@GetMapping("/findby/prdctid/{productid}")
-	public ResponseEntity<?> searchByProductId(@PathVariable("productid") int productId) {
-	ResponseEntity<?> response = inventoryService.getinventoryByProductId(productId);
-	return response;
-	}
-	
-////	 SEARCH Inventories | by Type
-//	@GetMapping("/findby/{type}")
-//	public ResponseEntity<?> searchByCategory(@PathVariable("type") String type) {
-//	ResponseEntity<List<Inventory>> response = inventoryService.getInventoriesByCategory(type);
-//	return response;
-//	}
 
-	// UPDATE Inventory | By Inventory Id
-	@PutMapping("/updateforinv/{inventoryid}/{quantity}")
-	public ResponseEntity<?> updateByInventoryId(@PathVariable("inventoryid") UUID inventoryId,@PathVariable("quantity") int quantity) {
-	ResponseEntity<?> response = inventoryService.updateInventoryByInventoryId(inventoryId,quantity);
-	return response;
-	}	
-	
-	// UPDATE Inventory | By Product Id
-	@PutMapping("/updateforprdct/{productid}/{quantity}")
-	public ResponseEntity<?> updateByProductId(@PathVariable("productid") int productId,@PathVariable("quantity") int quantity) {
-	ResponseEntity<?> response = inventoryService.updateInventoryByProductId( productId,quantity);
-	return response;
-	}	
-	
-	
-	// PURGE Inventory
-	@DeleteMapping("/deletefor/{productid}")
-	public ResponseEntity<?> purgeByProductId(@PathVariable("productid") int productId) {
-	ResponseEntity<?> response = inventoryService.deleteInventoryByProductId(productId);
-	return response;
+	@PutMapping("/update/{inventoryId}/{quantity}")
+	public ResponseEntity<?> updateInventory(@PathVariable int inventoryId,@PathVariable int quantity)
+	{
+		ResponseEntity<?> response=serv.alterInventory(inventoryId,quantity);
+		return response;
 	}
-	
-	// PURGE Inventories
-//	@DeleteMapping("/deletefor/{category}")
-//	public ResponseEntity<?> purgeByCategory(@PathVariable("productId") String category) {
-//	ResponseEntity<?> response = inventoryService.deleteInventoriesByCategory(category);
-//	return response;
-//	}
+
+	@DeleteMapping("/remove/{inventoryId}")
+	public ResponseEntity<?> removeInventory(@PathVariable int inventoryId)
+	{
+		ResponseEntity<?> response=serv.deleteInventory(inventoryId);
+		return response;
+	}
 }
